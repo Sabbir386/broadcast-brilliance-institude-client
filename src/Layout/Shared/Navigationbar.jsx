@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo.ico'
 // import logo from '../../assets/brain.ico'
 // import { AuthContext } from '../../Components/AuthProvider/AuthProvider';
 
@@ -27,28 +28,31 @@ const Navigationbar = () => {
                         </label>
                         <ul tabIndex={0} className=" menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
                             <Link className='mr-3' to="/">Home</Link>
-                            <Link className='mr-3' to="/alltoys">All Toys</Link>
-                            <Link className='mr-3' to="/mytoys">My Toys</Link>
-                            <Link className='mr-3' to="/addtoy">Add A Toy</Link>
-                            <Link className='mr-3' to="/blogs">Blogs</Link>
+                            <Link className='mr-3' to="/instructors">Instructors</Link>
+                            <Link className='mr-3' to="/classes">Classes</Link>
+                            <Link className='mr-3' to="/dashboard">Dashboard</Link>
+
 
                         </ul>
                     </div>
 
 
-                    <img className='rounded-lg' alt="" />
-                    <a className="btn btn-ghost normal-case text-xl">Brain Boosters</a>
+                    <div>
+                        <img className='rounded-lg ' src={logo} alt="" />
+                        {/* <a className="btn btn-ghost normal-case text-xl">BroadCast Brilliance Institude</a> */}
+                    </div>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-
                     <Link className='mr-3' to="/">Home</Link>
-                    <Link className='mr-3' to="/alltoys">All Toys</Link>
+                    <Link className='mr-3' to="/instructors">Instructors</Link>
+                    <Link className='mr-3' to="/classes">Classes</Link>
+                    <Link className='mr-3' to="/dashboard">Dashboard</Link>
                     {
                         // user ? <>
                         //     <Link className='mr-3' to="/mytoys">My Toys</Link>
                         //     <Link className='mr-3' to="/addtoy">Add A Toy</Link></> : ''
                     }
-                    <Link className='mr-3' to="/blogs">Blogs</Link>
+
 
                 </div>
                 <div className="navbar-end">
