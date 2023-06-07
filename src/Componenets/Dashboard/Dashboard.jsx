@@ -1,7 +1,11 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
-import { FaHackerNews } from 'react-icons/fa';
-import { FcPaid } from 'react-icons/fc';
+import { NavLink, Outlet } from 'react-router-dom';
+import { FaHackerNews, FaHome } from 'react-icons/fa';
+import { FcPaid, } from 'react-icons/fc';
+import { GiTeacher } from 'react-icons/gi';
+import { SiGoogleclassroom } from 'react-icons/si';
+
+
 
 const Dashboard = () => {
     return (
@@ -16,9 +20,23 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
                     {/* Sidebar content here */}
-                    <li><Link to={`/dashboard/myselectedclass`}><FaHackerNews></FaHackerNews> My Selected Class</Link></li>
-                    <li><Link to={`/dashboard/myenrolledclasses`}><FcPaid /> My Selected Class</Link></li>
+                    <li>
+                        <NavLink to={`/dashboard/myselectedclass`}>
+                            <FaHackerNews></FaHackerNews> My Selected Class</NavLink>
+                    </li>
+                    <li><NavLink to={`/dashboard/myenrolledclasses`}><FcPaid /> My Enrolled Class</NavLink></li>
                     <div className="divider"></div>
+                    <li>
+
+
+                        <NavLink className='mr-3' to="/"> <FaHome></FaHome> Home</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className='mr-3' to="/instructors"><GiTeacher />  Instructors</NavLink>
+                    </li>
+                    <li>
+                        <NavLink className='mr-3' to="/classes"><SiGoogleclassroom /> Classes</NavLink>
+                    </li>
                 </ul>
 
 
