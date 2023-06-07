@@ -59,7 +59,9 @@ const Navigationbar = () => {
                     {
                         user ? <>
 
-
+                            <div>
+                                <button onClick={handleLogOut} className='mr-3 font-medium'>LogOut</button>
+                            </div>
                             <div className="relative group">
                                 <img className='w-12 h-12 rounded-full' src={user?.photoURL} alt="Avatar" />
 
