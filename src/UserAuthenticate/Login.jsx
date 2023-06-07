@@ -98,7 +98,7 @@ const Login = () => {
                                 </p>
 
                                 <div className="form-control mt-6">
-                                    <input className="btn btn-primary" type="submit" value="Sign Up" />
+                                    <input className="btn btn-primary" type="submit" value="Sign In" />
                                 </div>
                             </form>
                             <p className='text-red-500'>{loginError}</p>
