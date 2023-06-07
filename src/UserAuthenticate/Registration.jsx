@@ -1,31 +1,23 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { useForm } from "react-hook-form";
 
 import { toast } from 'react-toastify';
 import useTitle from '../Hooks/useTitle';
 import { AuthContext } from '../AuthProvider/AuthProvider';
+import { updateProfile } from 'firebase/auth';
+
 
 const Registration = () => {
     const { createUser } = useContext(AuthContext);
     const [error, setError] = useState('');
     useTitle('Registration')
+    const { register, handleSubmit, watch, formState: { errors }, } = useForm();
 
-    const handleRegister = event => {
-        event.preventDefault();
-        const Form = event.target;
-        const name = Form.name.value;
-        const photo = Form.photo.value;
-        const email = Form.email.value;
-        const password = Form.password.value;
-        // console.log(name, photo, email, password);
-        setError('');
+    const onSubmit = data => {
 
-        //validate
-        if (password.length < 6) {
-            setError('Please add at least 6 Character in your password');
-            return;
-        }
-
+        const { email, password, photoURL, name } = data;
+        console.log(data)
         createUser(email, password)
             .then(result => {
                 const createdUser = result.user;
@@ -33,7 +25,7 @@ const Registration = () => {
 
                 updateProfile(createdUser, {
                     displayName: name,
-                    photoURL: photo
+                    photoURL: photoURL
 
                 })
                     .then(() => {
@@ -53,53 +45,80 @@ const Registration = () => {
                 console.log(error.message);
                 setError(error.message);
             })
-
-
-
     }
 
     return (
         <div className='my-10 px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8'>
-            <section className="bg-gray-50 dark:bg-gray-900 mt-5">
+            <section className=" dark:bg-gray-900 mt-5">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
 
                     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
-                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white">
+                            <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white text-center">
                                 Create an Account
                             </h1>
-                            <form onSubmit={handleRegister} className="space-y-4 md:space-y-6" action="#">
-                                <div>
-                                    <label htmlFor="name" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your Name</label>
-                                    <input type="text" name="name" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Input Your Name" required />
-                                </div>
-                                <div>
-                                    <label htmlFor="photo-url" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Photo Url</label>
-                                    <input type="text" name="photo" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Input Photo Url" required />
-                                </div>
-                                <div>
-                                    <label htmlFor="email" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your email</label>
-                                    <input type="email" name="email" id="email" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Input email" required />
-                                </div>
-                                <div>
-                                    <label htmlFor="password" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Password</label>
-                                    <input type="password" name="password" id="password" placeholder="Input Password" className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                                </div>
 
-                                <div className="flex items-start">
-                                    <div className="flex items-center h-5">
-                                        <input id="terms" aria-describedby="terms" type="checkbox" className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-primary-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-primary-600 dark:ring-offset-gray-800" required />
-                                    </div>
-                                    <div className="ml-3 text-sm">
-                                        <label htmlFor="terms" className="font-light text-gray-500 dark:text-gray-300">I accept the <a className="font-medium text-primary-600 hover:underline dark:text-primary-500" href="#">Terms and Conditions</a></label>
-                                    </div>
-                                </div>
-                                <button className='btn btn-primary p-3'>Register</button>
+                            <div className='bg-gray-200 text-center px-4 py-5 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 rounded-lg'>
 
-                                <p className="text-sm font-light text-gray-500 dark:text-gray-400">
-                                    Already have an account? <span className="font-medium text-primary-600 hover:underline dark:text-primary-500"> <Link to="/login">Login here</Link></span>
-                                </p>
-                            </form>
+                                <form onSubmit={handleSubmit(onSubmit)} className="card-body">
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Name</span>
+                                        </label>
+                                        <input type="text"  {...register("name", { required: true })} name="name" placeholder="Name" className="input input-bordered" />
+                                        {errors.name && <span className="text-red-600">Name is required</span>}
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Photo URL</span>
+                                        </label>
+                                        <input type="text"  {...register("photoURL", { required: true })} placeholder="Photo URL" className="input input-bordered" />
+                                        {errors.photoURL && <span className="text-red-600">Photo URL is required</span>}
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Email</span>
+                                        </label>
+                                        <input type="email"  {...register("email", { required: true })} name="email" placeholder="email" className="input input-bordered" />
+                                        {errors.email && <span className="text-red-600">Email is required</span>}
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Password</span>
+                                        </label>
+                                        <input type="password"  {...register("password", {
+                                            required: true,
+                                            minLength: 6,
+                                            pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/
+                                        })} placeholder="password" className="input input-bordered" />
+                                        {errors.password?.type === 'required' && <p className="text-red-500">Password is required</p>}
+                                        {errors.password?.type === 'minLength' && <p className="text-red-500">Password must be 6 characters</p>}
+
+                                        {errors.password?.type === 'pattern' && <p className="text-red-500">Password must have one Uppercase letter,and One Special character.</p>}
+
+                                    </div>
+                                    <div className="form-control">
+                                        <label className="label">
+                                            <span className="label-text">Password</span>
+                                        </label>
+                                        <input type="password"  {...register("confirmPassword", {
+                                            required: true,
+                                            // validate: (value) => value === password.current || 'The passwords do not match',
+
+                                        })} placeholder="Confirm Password" className="input input-bordered" />
+                                        <label className="label">
+                                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
+                                        </label>
+
+                                    </div>
+                                    <div className="form-control mt-6">
+                                        <input className="btn btn-primary" type="submit" value="Sign Up" />
+                                    </div>
+                                </form>
+                                <p>If you Already have an account? Go to <small className='text-normal font-bold'> <Link to="/login">Login</Link></small></p>
+
+                            </div>
+
                             <p className='text-red-500'>{error}</p>
                         </div>
                     </div>
