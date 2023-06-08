@@ -1,6 +1,13 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { toast } from 'react-toastify';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import useCart from '../../Hooks/useCart';
 
+// import Swal from 'sweetalert2'
 const ClassesPageSingleData = ({ singleData }) => {
+    const { user } = useContext(AuthContext);
+    const [, refetch] = useCart();
+
     const { class_name,
         class_image,
         instructor_name,
@@ -15,6 +22,7 @@ const ClassesPageSingleData = ({ singleData }) => {
             class_image,
             instructor_name,
             instructor_email,
+            email: user?.email,
             available_seats,
             price,
             status
@@ -28,7 +36,10 @@ const ClassesPageSingleData = ({ singleData }) => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data);
+                if (data.insertedId) {
+                    refetch();
+                    toast('Successfully added class');
+                }
             })
             .catch(error => {
                 console.log(error);
@@ -45,6 +56,8 @@ const ClassesPageSingleData = ({ singleData }) => {
                 <p> Instructor_Name : {instructor_name}</p>
                 <p> Instructor_Email : {instructor_email}</p>
                 <p> Price : ${price}</p>
+
+
 
 
                 <div className="card-actions">
