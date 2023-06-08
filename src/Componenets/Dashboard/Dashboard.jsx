@@ -32,10 +32,10 @@ const Dashboard = () => {
                         <NavLink className='mr-3' to="/"> <FaHome></FaHome> Home</NavLink>
                     </li>
                     <li>
-                        <NavLink className='mr-3' to="/instructors"><GiTeacher />  Instructors</NavLink>
+                        <NavLink className='mr-3' to="/instructorspage"><GiTeacher />  Instructors</NavLink>
                     </li>
                     <li>
-                        <NavLink className='mr-3' to="/classes"><SiGoogleclassroom /> Classes</NavLink>
+                        <NavLink className='mr-3' to="/classespage"><SiGoogleclassroom /> Classes</NavLink>
                     </li>
                 </ul>
 

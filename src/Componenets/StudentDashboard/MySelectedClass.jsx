@@ -1,13 +1,46 @@
 import React from 'react';
 import useCart from '../../Hooks/useCart';
+import { FaTrashAlt } from 'react-icons/fa';
+import Swal from 'sweetalert2';
 
 const MySelectedClass = () => {
-    const [cart] = useCart();
+    const [cart, refetch] = useCart();
 
-    const totalPrice = cart.reduce((sum, item) => item.price + sum, 0)
+
+
+    const totalPrice = cart.reduce((sum, item) => item.price + sum, 0).toFixed(2);
+    const handleDelete = (id) => {
+        Swal.fire({
+            title: 'Are you sure,want to delete this class?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                fetch(`http://localhost:5000/bookingClass/${id}`, {
+                    method: 'DELETE'
+                })
+                    .then(res => res.json())
+                    .then(result => {
+                        if (result.deletedCount) {
+                            refetch();
+                            Swal.fire(
+                                'Deleted!',
+                                'Your select class has been deleted.',
+                                'success'
+                            )
+                        }
+                    })
+
+            }
+        })
+    }
     return (
         <>
-            <div className='flex justify-between gap-4 font-semibold items-center'>
+            <div className='flex  gap-4 font-semibold items-center'>
                 <p className=''>Total Selected Class : {cart.length}</p>
                 <p>Total Price : ${totalPrice}</p>
                 <button className="btn btn-sm btn-info">Payment</button>
@@ -53,9 +86,11 @@ const MySelectedClass = () => {
                                     ${product.price}
                                 </td>
 
-                                <td>
-                                    <button className="btn btn-warning btn-sm">Delete</button>
+
+                                <td className=''>
+                                    <FaTrashAlt onClick={() => handleDelete(product._id)} className='mx-auto text-red-500 h-7 w-8 cursor-pointer'>Delete</FaTrashAlt>
                                 </td>
+
 
                             </tr>)
                         }
