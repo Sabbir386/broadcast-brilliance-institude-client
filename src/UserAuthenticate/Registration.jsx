@@ -17,7 +17,7 @@ const Registration = () => {
     const onSubmit = data => {
 
         const { email, password, photoURL, name } = data;
-        console.log(data)
+
         createUser(email, password)
             .then(result => {
                 const createdUser = result.user;
@@ -29,7 +29,23 @@ const Registration = () => {
 
                 })
                     .then(() => {
-                        console.log(createdUser);
+                        const userinfo = { name, email };
+                        fetch('http://localhost:5000/users', {
+                            method: 'POST',
+                            headers: {
+                                'content-type': 'application/json'
+                            },
+
+                            body: JSON.stringify(userinfo)
+                        })
+                            .then(res => res.json())
+                            .then(data => {
+                                if (data.insertedId) {
+                                    toast('successfully created user');
+
+                                }
+
+                            })
                         setError('');
                     })
                     .catch(error => {
@@ -37,7 +53,6 @@ const Registration = () => {
                         setError(error.message);
                         return;
                     })
-                toast('successfully created user');
 
 
             })

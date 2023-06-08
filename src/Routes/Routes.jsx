@@ -11,6 +11,7 @@ import MySelectedClass from "../Componenets/StudentDashboard/MySelectedClass";
 import MyEnrollMentClass from "../Componenets/StudentDashboard/MyEnrollMentClass";
 import InstructorPage from "../Pages/InstructorsPage/InstructorPage";
 import ClassesPage from "../Pages/ClassesPage/ClassesPage";
+import PrivateRoute from "./PrivateRoutes";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -49,7 +50,7 @@ export const router = createBrowserRouter([
     {
 
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <PrivateRoute><Dashboard></Dashboard></PrivateRoute>,
         children: [
             {
                 path: '/dashboard/myselectedclass',

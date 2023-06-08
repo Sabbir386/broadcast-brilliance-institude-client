@@ -13,8 +13,10 @@ import useTitle from '../Hooks/useTitle';
 
 const Login = () => {
     const auth = getAuth(app);
-    const navlink = useNavigate();
-
+    // const navlink = useNavigate();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const provider = new GoogleAuthProvider();
 
@@ -23,8 +25,25 @@ const Login = () => {
         signInWithPopup(auth, provider)
             .then(result => {
                 const user = result.user;
-                console.log(user);
-                navlink('/');
+                const userinfo = { name: user.displayName, email: user.email };
+                fetch('http://localhost:5000/users', {
+                    method: 'POST',
+                    headers: {
+                        'content-type': 'application/json'
+                    },
+
+                    body: JSON.stringify(userinfo)
+                })
+                    .then(res => res.json())
+                    .then(data => {
+                        if (data.insertedId) {
+                            navigate(from, { replace: true });
+                            toast('successfully created user');
+
+                        }
+
+                    })
+
 
 
             })
@@ -37,10 +56,7 @@ const Login = () => {
     const [loginError, setLoginError] = useState('');
 
     const { signIn } = useContext(AuthContext);
-    const navigate = useNavigate();
-    const location = useLocation();
-    // console.log(location);
-    const from = location.state?.from?.pathname || '/';
+
     const onSubmit = data => {
         setLoginError('');
 

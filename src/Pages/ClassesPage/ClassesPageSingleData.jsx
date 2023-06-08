@@ -2,11 +2,15 @@ import React, { useContext } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useCart from '../../Hooks/useCart';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 // import Swal from 'sweetalert2'
 const ClassesPageSingleData = ({ singleData }) => {
     const { user } = useContext(AuthContext);
     const [, refetch] = useCart();
+    const navigate = useNavigate();
+    const location = useLocation();
+    const from = location.state?.from?.pathname || '/';
 
     const { class_name,
         class_image,
@@ -27,23 +31,28 @@ const ClassesPageSingleData = ({ singleData }) => {
             price,
             status
         }
-        fetch('http://localhost:5000/bookingClass', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(bookedClass)
-        })
-            .then(res => res.json())
-            .then(data => {
-                if (data.insertedId) {
-                    refetch();
-                    toast('Successfully added class');
-                }
+        if (user) {
+            fetch('http://localhost:5000/bookingClass', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json'
+                },
+                body: JSON.stringify(bookedClass)
             })
-            .catch(error => {
-                console.log(error);
-            })
+                .then(res => res.json())
+                .then(data => {
+                    if (data.insertedId) {
+                        refetch();
+                        toast('Successfully added class');
+                    }
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+        else {
+            navigate('/login');
+        }
     }
     return (
         <div className="card w-96 bg-base-100 shadow-xl">

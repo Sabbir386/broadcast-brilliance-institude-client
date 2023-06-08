@@ -56,7 +56,7 @@ const MySelectedClass = () => {
 
                             <th>#</th>
                             <th>class</th>
-                            <th>ClassName</th>
+                            <th>Class-Name</th>
                             <th>Price</th>
                             <th>Delete Options</th>
                         </tr>
