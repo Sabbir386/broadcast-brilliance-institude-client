@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 
 
 const SingleInstructor = ({ instructorData }) => {
@@ -18,14 +19,14 @@ const SingleInstructor = ({ instructorData }) => {
 
                 <div className="">
                     <h5 className="text-normal font-semibold">Instructor Name: {instructor_name}</h5>
-                    <p className=""> Total Students : {total_students}</p>
 
 
 
-                    <button className="btn btn-primary mt-3">See Classes</button>
+
+                    <Link className="btn btn-primary mt-3" to='/classespage'>See Classes</Link>
                 </div>
             </div>
-        </div>
+        </div >
     );
 };
 

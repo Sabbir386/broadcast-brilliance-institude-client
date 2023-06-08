@@ -3,6 +3,7 @@ import SingleInstructor from './SingleInstructor';
 
 const PopularInstructors = () => {
     const [instructorsData, setInstructorsData] = useState([]);
+
     useEffect(() => {
         fetch('http://localhost:5000/allinstructors')
             .then(res => res.json())
@@ -10,6 +11,7 @@ const PopularInstructors = () => {
                 setInstructorsData(data);
             })
     }, [])
+
     return (
         <div>
             <h3 className='text-xl font-semibold text-center mt-12 mb-8 '>Popular Instructor Section</h3>
