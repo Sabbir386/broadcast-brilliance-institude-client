@@ -46,8 +46,8 @@ const Navigationbar = () => {
                 </div>
                 <div className="navbar-center hidden lg:flex">
                     <Link className='mr-3' to="/">Home</Link>
-                    <Link className='mr-3' to="/instructors">Instructors</Link>
-                    <Link className='mr-3' to="/classes">Classes</Link>
+                    <Link className='mr-3' to="/instructorspage">Instructors</Link>
+                    <Link className='mr-3' to="/classespage">Classes</Link>
 
                     {
                         user ? <Link className='mr-3' to="/dashboard">Dashboard</Link> : ''

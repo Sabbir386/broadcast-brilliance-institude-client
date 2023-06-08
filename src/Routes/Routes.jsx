@@ -9,6 +9,8 @@ import Registration from "../UserAuthenticate/Registration";
 import Dashboard from "../Componenets/Dashboard/Dashboard";
 import MySelectedClass from "../Componenets/StudentDashboard/MySelectedClass";
 import MyEnrollMentClass from "../Componenets/StudentDashboard/MyEnrollMentClass";
+import InstructorPage from "../Pages/InstructorsPage/InstructorPage";
+import ClassesPage from "../Pages/ClassesPage/ClassesPage";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -29,6 +31,16 @@ export const router = createBrowserRouter([
             {
                 path: "/registration",
                 element: <Registration></Registration>
+
+            },
+            {
+                path: "/instructorspage",
+                element: <InstructorPage></InstructorPage>
+
+            },
+            {
+                path: "/classespage",
+                element: <ClassesPage></ClassesPage>
 
             },
 
