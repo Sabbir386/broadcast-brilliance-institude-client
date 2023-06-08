@@ -8,6 +8,32 @@ const ClassesPageSingleData = ({ singleData }) => {
         available_seats,
         price,
         status } = singleData || {};
+
+    const handleBooking = (selectClass) => {
+        const bookedClass = {
+            class_name,
+            class_image,
+            instructor_name,
+            instructor_email,
+            available_seats,
+            price,
+            status
+        }
+        fetch('http://localhost:5000/bookingClass', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(bookedClass)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log(data);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
     return (
         <div className="card w-96 bg-base-100 shadow-xl">
             <figure className="px-10 pt-10">
@@ -22,7 +48,7 @@ const ClassesPageSingleData = ({ singleData }) => {
 
 
                 <div className="card-actions">
-                    <button className="btn btn-primary">Booking Class</button>
+                    <button onClick={() => handleBooking(singleData)} className="btn btn-primary">Booking Class</button>
                 </div>
             </div>
         </div>
