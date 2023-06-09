@@ -41,6 +41,8 @@ const ClassesPageSingleData = ({ singleData }) => {
             })
                 .then(res => res.json())
                 .then(data => {
+                    // console.log(data);
+
                     if (data.insertedId) {
                         refetch();
                         toast('Successfully added class');
