@@ -8,7 +8,8 @@ import { SiGoogleclassroom } from 'react-icons/si';
 
 
 const Dashboard = () => {
-    const Admin = true;
+    const Admin = false;
+    const Instructor = true;
 
     return (
         <div className="drawer lg:drawer-open">
@@ -23,7 +24,10 @@ const Dashboard = () => {
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
 
                     {
+                        // AdminDashboard 
                         Admin ? <>
+                            <h3 className='text-xl font-semibold text-sky-500'>Admin DashBoard</h3>
+                            <div className="divider"></div>
                             <><li>
                                 <NavLink to='/dashboard/manageClasses'>
                                     <FaHackerNews></FaHackerNews> Manage Classes</NavLink>
@@ -32,12 +36,26 @@ const Dashboard = () => {
 
                         </>
                             :
-
-                            <><li>
-                                <NavLink to='/dashboard/myselectedclass'>
-                                    <FaHackerNews></FaHackerNews> My Selected Class</NavLink>
+                            // instructor dashboard
+                            Instructor ? <><li>
+                                <h3 className='text-xl font-semibold text-sky-500'>Instructor DashBoard</h3>
+                                <div className="divider"></div>
+                                <NavLink to='/dashboard/addaclass'>
+                                    <FaHackerNews></FaHackerNews> Add a Class</NavLink>
                             </li>
-                                <li><NavLink to='/dashboard/myenrolledclasses'><FcPaid /> My Enrolled Class</NavLink></li></>
+                                <li><NavLink to='/dashboard/myclasses'><FcPaid /> My Classes</NavLink></li></>
+
+
+                                :
+                                // Student dashboard 
+
+                                <><li>
+                                    <h3 className='text-xl font-semibold text-sky-500'>Student DashBoard</h3>
+                                    <div className="divider"></div>
+                                    <NavLink to='/dashboard/myselectedclass'>
+                                        <FaHackerNews></FaHackerNews> My Selected Class</NavLink>
+                                </li>
+                                    <li><NavLink to='/dashboard/myenrolledclasses'><FcPaid /> My Enrolled Class</NavLink></li></>
                     }
 
 
