@@ -1,14 +1,15 @@
 import React, { useEffect, useState } from 'react';
 import SingleInstructor from './SingleInstructor';
+import axios from 'axios';
+import { Result } from 'postcss';
 
 const PopularInstructors = () => {
     const [instructorsData, setInstructorsData] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allinstructors')
-            .then(res => res.json())
-            .then(data => {
-                setInstructorsData(data);
+        axios.get('http://localhost:5000/allinstructors')
+            .then(result => {
+                setInstructorsData(result.data);
             })
     }, [])
 

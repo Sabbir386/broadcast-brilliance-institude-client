@@ -7,13 +7,13 @@ import Swal from 'sweetalert2';
 const AddAClass = () => {
     const { user } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
-    const onSubmit = (addClass) => {
+    const onSubmit = (addclass) => {
         fetch("http://localhost:5000/allClasses", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(addClass)
+            body: JSON.stringify(addclass)
         })
             .then(res => res.json())
             .then(data => {

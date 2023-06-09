@@ -9,7 +9,7 @@ import { SiGoogleclassroom } from 'react-icons/si';
 
 const Dashboard = () => {
     const Admin = false;
-    const Instructor = false;
+    const Instructor = true;
 
     return (
         <div className="drawer lg:drawer-open">
