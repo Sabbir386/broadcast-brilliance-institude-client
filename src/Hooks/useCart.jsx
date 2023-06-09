@@ -3,11 +3,16 @@ import { useContext } from 'react';
 import { AuthContext } from '../AuthProvider/AuthProvider';
 const useCart = () => {
     const { user } = useContext(AuthContext);
+    const token = localStorage.getItem('token');
     const { isLoading, refetch, isError, data: cart = [], error } = useQuery({
         queryKey: ['bookingClass', user?.email],
         queryFn: async () => {
 
-            const response = await fetch(`http://localhost:5000/bookingClass/?email=${user?.email}`)
+            const response = await fetch(`http://localhost:5000/bookingClass/?email=${user?.email}`, {
+                headers: {
+                    authorization: `bearer ${token}`
+                }
+            })
             return response.json();
 
         }
