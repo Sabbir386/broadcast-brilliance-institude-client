@@ -4,12 +4,32 @@ import { FaHackerNews, FaHome, FaUser } from 'react-icons/fa';
 import { FcPaid, } from 'react-icons/fc';
 import { GiTeacher } from 'react-icons/gi';
 import { SiGoogleclassroom } from 'react-icons/si';
+import { useEffect } from 'react';
+import { useState } from 'react';
+import { useContext } from 'react';
+import { AuthContext } from '../../AuthProvider/AuthProvider';
+import userCart from '../../Hooks/userCart';
 
 
 
 const Dashboard = () => {
-    const Admin = false;
-    const Instructor = true;
+    const [role, setRole] = useState('');
+    const { user } = useContext(AuthContext);
+    const [data, refetch] = userCart();
+
+
+    useEffect(() => {
+
+        if (data) {
+            const roleActivity = data.filter(userRole => userRole.email == user.email);
+            if (roleActivity) {
+                const confrimRole = roleActivity[0].role;
+                setRole(confrimRole);
+
+            }
+        }
+    }, [data])
+
 
     return (
         <div className="drawer lg:drawer-open">
@@ -23,10 +43,11 @@ const Dashboard = () => {
                 <label htmlFor="my-drawer-2" className="drawer-overlay"></label>
                 <ul className="menu p-4 w-80 h-full bg-base-200 text-base-content">
 
+
                     {
                         // AdminDashboard 
-                        Admin ? <>
-                            <h3 className='text-xl font-semibold text-sky-500'>Admin DashBoard</h3>
+                        role == 'admin' ? <>
+                            <h3 className='text-xl font-semibold text-sky-500'>Admin DashBoard </h3>
                             <div className="divider"></div>
                             <><li>
                                 <NavLink to='/dashboard/manageClasses'>
@@ -37,7 +58,7 @@ const Dashboard = () => {
                         </>
                             :
                             // instructor dashboard
-                            Instructor ? <><li>
+                            role == 'instructor' ? <><li>
                                 <h3 className='text-xl font-semibold text-sky-500'>Instructor DashBoard</h3>
                                 <div className="divider"></div>
                                 <NavLink to='/dashboard/addaclass'>
