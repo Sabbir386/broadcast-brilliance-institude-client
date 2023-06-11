@@ -6,7 +6,7 @@ import Swal from 'sweetalert2';
 const MySelectedClass = () => {
     const [cart, refetch] = useCart();
 
-
+    // console.log(cart);
 
     const totalPrice = cart.reduce((sum, item) => item.price + sum, 0).toFixed(2);
     const handleDelete = (id) => {
