@@ -5,16 +5,26 @@ const useCart = () => {
     const { user } = useContext(AuthContext);
     const token = localStorage.getItem('token');
     const { isLoading, refetch, isError, data: cart = [], error } = useQuery({
-        queryKey: ['bookingClass', user?.email],
+        queryKey: ['cart', user?.email],
         queryFn: async () => {
+            if (user && user.email) {
 
-            const response = await fetch(`http://localhost:5000/bookingClass/?email=${user?.email}`, {
-                headers: {
-                    authorization: `bearer ${token}`
+
+                const response = await fetch(`http://localhost:5000/bookingClass/?email=${user.email}`, {
+                    headers: {
+                        authorization: `Bearer ${token}`,
+                    },
+                });
+
+
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Failed to fetch booking class data');
                 }
-            })
-            return response.json();
-
+            } else {
+                throw new Error('User email is missing');
+            }
         }
     })
     return [cart, refetch]

@@ -21,7 +21,7 @@ const Dashboard = () => {
     useEffect(() => {
 
         if (data) {
-            const roleActivity = data.filter(userRole => userRole.email == user.email);
+            const roleActivity = data.filter(userRole => userRole.email == user?.email);
             if (roleActivity) {
                 const confrimRole = roleActivity[0].role;
                 setRole(confrimRole);

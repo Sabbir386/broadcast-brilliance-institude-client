@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import useCart from '../../Hooks/useCart';
@@ -7,6 +7,13 @@ import { useLocation, useNavigate } from 'react-router-dom';
 // import Swal from 'sweetalert2'
 const ClassesPageSingleData = ({ singleData }) => {
     const { user } = useContext(AuthContext);
+
+    const [isButtonDisabled, setIsButtonDisabled] = useState(false);
+
+
+
+
+
     const [, refetch] = useCart();
     const navigate = useNavigate();
     const location = useLocation();
@@ -21,6 +28,7 @@ const ClassesPageSingleData = ({ singleData }) => {
         status } = singleData || {};
 
     const handleBooking = (selectClass) => {
+        setIsButtonDisabled(true);
         const bookedClass = {
             class_name,
             class_image,
@@ -29,7 +37,8 @@ const ClassesPageSingleData = ({ singleData }) => {
             email: user?.email,
             available_seats,
             price,
-            status
+            status,
+            user_addedclass: 1,
         }
         if (user) {
             fetch('http://localhost:5000/bookingClass', {
@@ -72,7 +81,7 @@ const ClassesPageSingleData = ({ singleData }) => {
 
 
                 <div className="card-actions">
-                    <button onClick={() => handleBooking(singleData)} className="btn btn-primary">Booking Class</button>
+                    <button onClick={() => handleBooking(singleData)} disabled={isButtonDisabled} className="btn btn-primary">Booking Class</button>
                 </div>
             </div>
         </div>

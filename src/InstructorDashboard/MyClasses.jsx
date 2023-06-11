@@ -31,6 +31,8 @@ const MyClasses = () => {
                             <th>Class Name</th>
 
                             <th>Class Status</th>
+                            <th>Total Enrolled Students</th>
+
                             <th>FeedBack</th>
                             <th>Activity</th>
                         </tr>
@@ -61,6 +63,9 @@ const MyClasses = () => {
                                 </td>
                                 <td>
                                     {data?.status}
+                                </td>
+                                <td>
+                                    {data?.user_addedclass || 0}
                                 </td>
                                 <td>
                                     {data?.feedback}
