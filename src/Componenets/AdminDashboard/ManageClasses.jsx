@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import Swal from 'sweetalert2';
@@ -138,7 +139,9 @@ const ManageClasses = () => {
 
                                         Deny</button>
 
-                                    <button className="btn btn-primary btn-xs">FeedBack</button>
+                                    <Link to={`/dashboard/manageClasses/${data?._id}`} className="btn btn-primary btn-xs" >
+                                        FeedBack
+                                    </Link>
                                 </div>
                             </th>
                         </tr>)

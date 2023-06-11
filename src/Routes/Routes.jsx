@@ -16,6 +16,7 @@ import ManageClasses from "../Componenets/AdminDashboard/ManageClasses";
 import ManageUsers from "../Componenets/AdminDashboard/ManageUsers";
 import AddAClass from "../InstructorDashboard/AddAClass";
 import MyClasses from "../InstructorDashboard/MyClasses";
+import FeedbackClassByAdmin from "../Componenets/AdminDashboard/feedbackClassByAdmin";
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -67,6 +68,11 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/manageClasses',
                 element: <ManageClasses></ManageClasses>
+            },
+            {
+                path: '/dashboard/manageClasses/:id',
+                element: <FeedbackClassByAdmin></FeedbackClassByAdmin>,
+                loader: ({ params }) => fetch(`http://localhost:5000/allClasses/feedback/${params.id}`)
             },
             {
                 path: '/dashboard/manageusers',
