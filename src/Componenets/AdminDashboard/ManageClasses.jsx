@@ -5,17 +5,24 @@ import { useEffect } from 'react';
 import Swal from 'sweetalert2';
 
 const ManageClasses = () => {
+    // const [isButtonDisabledApprove, setIsButtonDisabledApprove] = useState(false);
+    // const [isButtonDisabledDeny, setIsButtonDisabledDeny] = useState(false);
+
+
 
     const { isLoading, refetch, isError, data: classPagedata = [], error } = useQuery({
         queryKey: ['allClasses'],
         queryFn: async () => {
 
             const response = await fetch('http://localhost:5000/allClasses')
+
             return response.json();
 
         }
     })
     const handleApproved = (id) => {
+
+        // setIsButtonDisabledApprove(true)
         fetch(`http://localhost:5000/allClasses/approved/${id}`, {
             method: 'PATCH'
         })
@@ -36,6 +43,8 @@ const ManageClasses = () => {
             })
     }
     const handleDeny = (id) => {
+        // setIsButtonDisabledDeny(true)
+
         fetch(`http://localhost:5000/allClasses/deny/${id}`, {
             method: 'PATCH'
         })
@@ -122,10 +131,10 @@ const ManageClasses = () => {
 
                             <th className=''>
                                 <div className='space-y-3 text-white'>
-                                    <button onClick={() => handleApproved(data?._id)} className="btn btn-primary btn-xs">
+                                    <button disabled={data?.status == 'Approved' || data?.status == 'Deny'} onClick={() => handleApproved(data?._id)} className="btn btn-primary btn-xs">
 
                                         Approved</button>
-                                    <button onClick={() => handleDeny(data?._id)} className="btn btn-primary btn-xs">
+                                    <button disabled={data?.status == 'Approved' || data?.status == 'Deny'} onClick={() => handleDeny(data?._id)} className="btn btn-primary btn-xs">
 
                                         Deny</button>
 
