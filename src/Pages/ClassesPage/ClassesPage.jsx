@@ -7,7 +7,8 @@ const ClassesPage = () => {
         fetch('http://localhost:5000/allClasses')
             .then(res => res.json())
             .then(data => {
-                setClassPageData(data);
+                const reamining = data.filter(approvedData => approvedData.status == 'Approved')
+                setClassPageData(reamining);
             })
     }, [])
     return (
