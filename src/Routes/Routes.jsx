@@ -17,6 +17,8 @@ import ManageUsers from "../Componenets/AdminDashboard/ManageUsers";
 import AddAClass from "../InstructorDashboard/AddAClass";
 import MyClasses from "../InstructorDashboard/MyClasses";
 import FeedbackClassByAdmin from "../Componenets/AdminDashboard/feedbackClassByAdmin";
+import Payment from "../Componenets/StudentDashboard/Payment";
+
 export const router = createBrowserRouter([
     {
         path: "/",
@@ -64,6 +66,11 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/myenrolledclasses',
                 element: <MyEnrollMentClass></MyEnrollMentClass>
+            },
+            {
+                path: '/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({ params }) => fetch(`http://localhost:5000/bookingClass/payment/${params.id}`)
             },
             {
                 path: '/dashboard/manageClasses',

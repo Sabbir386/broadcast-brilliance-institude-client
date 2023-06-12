@@ -2,6 +2,7 @@ import React from 'react';
 import useCart from '../../Hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
+import { Link } from 'react-router-dom';
 
 const MySelectedClass = () => {
     const [cart, refetch] = useCart();
@@ -42,8 +43,8 @@ const MySelectedClass = () => {
         <>
             <div className='flex  gap-4 font-semibold items-center'>
                 <p className=''>Total Selected Class : {cart.length}</p>
-                <p>Total Price : ${totalPrice}</p>
-                <button className="btn btn-sm btn-info">Payment</button>
+                <p>Total Amount : ${totalPrice}</p>
+                <button className="btn btn-sm btn-info"> Total Payment</button>
 
             </div>
             <div className="divider"></div>
@@ -58,7 +59,8 @@ const MySelectedClass = () => {
                             <th>class</th>
                             <th>Class-Name</th>
                             <th>Price</th>
-                            <th>Delete Options</th>
+                            <th>Buy Class</th>
+                            <th>Activity</th>
                         </tr>
                     </thead>
                     <tbody className='text-center'>
@@ -84,6 +86,9 @@ const MySelectedClass = () => {
                                 </td>
                                 <td>
                                     ${product.price}
+                                </td>
+                                <td>
+                                    <Link to={`/dashboard/payment/${product._id}`}><button className="btn btn-sm btn-info"> Pay</button></Link>
                                 </td>
 
 
