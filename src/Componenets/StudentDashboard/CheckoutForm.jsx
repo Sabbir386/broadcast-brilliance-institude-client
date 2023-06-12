@@ -94,6 +94,7 @@ export const CheckoutForm = ({ payInfo }) => {
                 const paymentInformation = {
                     ...payInfo,
                     transactionId: paymentIntent.id,
+                    date: new Date(),
                 }
                 console.log(paymentInformation);
                 fetch('http://localhost:5000/payment/transaction', {

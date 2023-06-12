@@ -1,6 +1,6 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
-import { FaHackerNews, FaHome, FaUser } from 'react-icons/fa';
+import { FaHackerNews, FaHistory, FaHome, FaUser } from 'react-icons/fa';
 import { FcPaid, } from 'react-icons/fc';
 import { GiTeacher } from 'react-icons/gi';
 import { SiGoogleclassroom } from 'react-icons/si';
@@ -76,7 +76,8 @@ const Dashboard = () => {
                                     <NavLink to='/dashboard/myselectedclass'>
                                         <FaHackerNews></FaHackerNews> My Selected Class</NavLink>
                                 </li>
-                                    <li><NavLink to='/dashboard/myenrolledclasses'><FcPaid /> My Enrolled Class</NavLink></li></>
+                                    <li><NavLink to='/dashboard/myenrolledclasses'><FcPaid /> My Enrolled Class</NavLink></li>
+                                    <li><NavLink to='/dashboard/paymenthistory'><FaHistory /> My Payment</NavLink></li></>
                     }
 
 

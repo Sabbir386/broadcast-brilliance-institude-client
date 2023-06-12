@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import useCart from '../../Hooks/useCart';
 import { FaTrashAlt } from 'react-icons/fa';
 import Swal from 'sweetalert2';
@@ -6,8 +6,19 @@ import { Link } from 'react-router-dom';
 
 const MySelectedClass = () => {
     const [cart, refetch] = useCart();
+    const [filterData, setFilterData] = useState([]);
+    // const [desiredID,setDesiredID]=useState('');
 
-    // console.log(cart);
+    // // console.log(cart);
+    // useEffect(() => {
+    //     if (cart.length > 0) {
+    //         const fakeid = ' ';
+    //         const remaining = cart.filter(data => { data.transactionId ? data : '' });
+    //         setFilterData(remaining);
+
+    //     }
+
+    // }, [cart])
 
     const totalPrice = cart.reduce((sum, item) => item.price + sum, 0).toFixed(2);
     const handleDelete = (id) => {
@@ -56,7 +67,7 @@ const MySelectedClass = () => {
                         <tr className='font-bold'>
 
                             <th>#</th>
-                            <th>class</th>
+                            <th>class Image</th>
                             <th>Class-Name</th>
                             <th>Price</th>
                             <th>Buy Class</th>
