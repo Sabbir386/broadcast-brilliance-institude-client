@@ -24,7 +24,7 @@ const feedbackClassByAdmin = () => {
         }
         // console.log(modiData);
 
-        fetch(`http://localhost:5000/allClasses/updatedFeedBack/${id}`, {
+        fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/allClasses/updatedFeedBack/${id}`, {
             method: 'PUT',
             headers: {
                 'content-type': "application/json"

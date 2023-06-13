@@ -24,7 +24,7 @@ export const CheckoutForm = ({ payInfo }) => {
     useEffect(() => {
         // console.log(payData?.price);
         if (payInfo?.price)
-            fetch('http://localhost:5000/create-payment-intent', {
+            fetch('https://broadcast-brilliance-institude-server-side.vercel.app/create-payment-intent', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'
@@ -97,7 +97,7 @@ export const CheckoutForm = ({ payInfo }) => {
                     date: new Date(),
                 }
                 console.log(paymentInformation);
-                fetch('http://localhost:5000/payment/transaction', {
+                fetch('https://broadcast-brilliance-institude-server-side.vercel.app/payment/transaction', {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'

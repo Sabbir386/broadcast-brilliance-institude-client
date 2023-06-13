@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import InstructorsData from './InstructorsData';
+import useTitle from '../../Hooks/useTitle';
 
 const InstructorPage = () => {
     const [instructorsPage, setInstructorsPage] = useState([]);
+    useTitle('InstructorPage ')
     useEffect(() => {
-        fetch('http://localhost:5000/allinstructors')
+        fetch('https://broadcast-brilliance-institude-server-side.vercel.app/allinstructors')
             .then(res => res.json())
             .then(data => {
                 setInstructorsPage(data);

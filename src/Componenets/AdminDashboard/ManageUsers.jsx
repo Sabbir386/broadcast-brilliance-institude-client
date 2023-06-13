@@ -8,7 +8,7 @@ const ManageUsers = () => {
         queryKey: ['users'],
         queryFn: async () => {
 
-            const response = await fetch('http://localhost:5000/users')
+            const response = await fetch('https://broadcast-brilliance-institude-server-side.vercel.app/users')
             return response.json();
 
         }
@@ -16,7 +16,7 @@ const ManageUsers = () => {
 
 
     const handleAdmin = (id) => {
-        fetch(`http://localhost:5000/users/admin/${id}`, {
+        fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/users/admin/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -35,7 +35,7 @@ const ManageUsers = () => {
             })
     }
     const handleInstructor = (id) => {
-        fetch(`http://localhost:5000/users/instructor/${id}`, {
+        fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/users/instructor/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

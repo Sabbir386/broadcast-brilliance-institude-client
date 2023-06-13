@@ -9,6 +9,7 @@ import { useState } from 'react';
 import { useContext } from 'react';
 import { AuthContext } from '../../AuthProvider/AuthProvider';
 import userCart from '../../Hooks/userCart';
+import useTitle from '../../Hooks/useTitle';
 
 
 
@@ -16,6 +17,7 @@ const Dashboard = () => {
     const [role, setRole] = useState('');
     const { user } = useContext(AuthContext);
     const [data, refetch] = userCart();
+    useTitle('DashBoard');
 
 
     useEffect(() => {

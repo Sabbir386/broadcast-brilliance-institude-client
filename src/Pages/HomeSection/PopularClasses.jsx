@@ -5,7 +5,7 @@ const PopularClasses = () => {
 
     const [classdata, setClassData] = useState([]);
     useEffect(() => {
-        fetch('http://localhost:5000/allClasses')
+        fetch('https://broadcast-brilliance-institude-server-side.vercel.app/allClasses')
             .then(res => res.json())
             .then(data => {
                 setClassData(data);

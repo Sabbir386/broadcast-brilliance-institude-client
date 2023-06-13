@@ -7,7 +7,7 @@ const PopularInstructors = () => {
     const [instructorsData, setInstructorsData] = useState([]);
 
     useEffect(() => {
-        axios.get('http://localhost:5000/allinstructors')
+        axios.get('https://broadcast-brilliance-institude-server-side.vercel.app/allinstructors')
             .then(result => {
                 setInstructorsData(result.data);
             })

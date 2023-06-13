@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ClassesPageSingleData from './ClassesPageSingleData';
+import useTitle from '../../Hooks/useTitle';
 
 const ClassesPage = () => {
     const [classPagedata, setClassPageData] = useState([]);
+    useTitle('classesPage')
     useEffect(() => {
-        fetch('http://localhost:5000/allClasses')
+        fetch('https://broadcast-brilliance-institude-server-side.vercel.app/allClasses')
             .then(res => res.json())
             .then(data => {
                 const reamining = data.filter(approvedData => approvedData.status == 'Approved')

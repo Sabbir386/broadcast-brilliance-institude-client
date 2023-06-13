@@ -15,7 +15,7 @@ const ManageClasses = () => {
         queryKey: ['allClasses'],
         queryFn: async () => {
 
-            const response = await fetch('http://localhost:5000/allClasses')
+            const response = await fetch('https://broadcast-brilliance-institude-server-side.vercel.app/allClasses')
 
             return response.json();
 
@@ -24,7 +24,7 @@ const ManageClasses = () => {
     const handleApproved = (id) => {
 
         // setIsButtonDisabledApprove(true)
-        fetch(`http://localhost:5000/allClasses/approved/${id}`, {
+        fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/allClasses/approved/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())
@@ -46,7 +46,7 @@ const ManageClasses = () => {
     const handleDeny = (id) => {
         // setIsButtonDisabledDeny(true)
 
-        fetch(`http://localhost:5000/allClasses/deny/${id}`, {
+        fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/allClasses/deny/${id}`, {
             method: 'PATCH'
         })
             .then(res => res.json())

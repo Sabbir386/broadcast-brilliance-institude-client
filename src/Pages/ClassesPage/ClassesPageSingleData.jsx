@@ -41,7 +41,7 @@ const ClassesPageSingleData = ({ singleData }) => {
             user_addedclass: 1,
         }
         if (user) {
-            fetch('http://localhost:5000/bookingClass', {
+            fetch('https://broadcast-brilliance-institude-server-side.vercel.app/bookingClass', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json'

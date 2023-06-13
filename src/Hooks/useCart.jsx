@@ -10,7 +10,7 @@ const useCart = () => {
             if (user && user.email) {
 
 
-                const response = await fetch(`http://localhost:5000/bookingClass/?email=${user.email}`, {
+                const response = await fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/bookingClass/?email=${user.email}`, {
                     headers: {
                         authorization: `Bearer ${token}`,
                     },

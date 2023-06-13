@@ -18,6 +18,7 @@ const Registration = () => {
 
         const { email, password, photoURL, name } = data;
 
+
         createUser(email, password)
             .then(result => {
                 const createdUser = result.user;
@@ -30,7 +31,7 @@ const Registration = () => {
                 })
                     .then(() => {
                         const userinfo = { name, email };
-                        fetch('http://localhost:5000/users', {
+                        fetch('https://broadcast-brilliance-institude-server-side.vercel.app/users', {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

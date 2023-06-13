@@ -6,7 +6,7 @@ const PaymentHistory = () => {
     const [paymentHistoryPage, setPaymentHistoryPage] = useState([]);
     useEffect(() => {
         if (user.email) {
-            fetch(`http://localhost:5000/payment/history/${user.email}`)
+            fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/payment/history/${user.email}`)
                 .then(res => res.json())
                 .then(data => {
                     setPaymentHistoryPage(data);

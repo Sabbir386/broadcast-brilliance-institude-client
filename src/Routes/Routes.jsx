@@ -71,7 +71,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookingClass/payment/${params.id}`)
+                loader: ({ params }) => fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/bookingClass/payment/${params.id}`)
             },
             {
                 path: '/dashboard/paymenthistory',
@@ -84,7 +84,7 @@ export const router = createBrowserRouter([
             {
                 path: '/dashboard/manageClasses/:id',
                 element: <FeedbackClassByAdmin></FeedbackClassByAdmin>,
-                loader: ({ params }) => fetch(`http://localhost:5000/allClasses/feedback/${params.id}`)
+                loader: ({ params }) => fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/allClasses/feedback/${params.id}`)
             },
             {
                 path: '/dashboard/manageusers',

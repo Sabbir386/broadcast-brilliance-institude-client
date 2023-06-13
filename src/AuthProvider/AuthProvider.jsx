@@ -45,7 +45,7 @@ const AuthProvider = ({ children }) => {
 
             setUser(loggedUser);
             if (loggedUser) {
-                axios.post('http://localhost:5000/jwt', {
+                axios.post('https://broadcast-brilliance-institude-server-side.vercel.app/jwt', {
                     email: loggedUser.email
                 })
                     .then(tokenData => {

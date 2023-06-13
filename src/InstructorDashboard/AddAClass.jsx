@@ -8,7 +8,7 @@ const AddAClass = () => {
     const { user } = useContext(AuthContext)
     const { register, formState: { errors }, handleSubmit } = useForm();
     const onSubmit = (addclass) => {
-        fetch("http://localhost:5000/allClasses", {
+        fetch("https://broadcast-brilliance-institude-server-side.vercel.app/allClasses", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"

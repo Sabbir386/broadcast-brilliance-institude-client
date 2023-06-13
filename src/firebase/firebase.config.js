@@ -7,13 +7,22 @@ import { getAnalytics } from "firebase/analytics";
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
-    apiKey: "AIzaSyDqHMpLLsV3pQ01BX1-udfSQM6qc2ThgmI",
-    authDomain: "brilliance-institude.firebaseapp.com",
-    projectId: "brilliance-institude",
-    storageBucket: "brilliance-institude.appspot.com",
-    messagingSenderId: "437865129404",
-    appId: "1:437865129404:web:65ef13cb1a799f734b77b9",
-    measurementId: "G-1VRGEC5K45"
+    // apiKey: "AIzaSyDqHMpLLsV3pQ01BX1-udfSQM6qc2ThgmI",
+    // authDomain: "brilliance-institude.firebaseapp.com",
+    // projectId: "brilliance-institude",
+    // storageBucket: "brilliance-institude.appspot.com",
+    // messagingSenderId: "437865129404",
+    // appId: "1:437865129404:web:65ef13cb1a799f734b77b9",
+    // measurementId: "G-1VRGEC5K45"
+
+
+    apiKey: import.meta.env.VITE_APIKEY,
+    authDomain: import.meta.env.VITE_AUTHDOMAIN,
+    projectId: import.meta.env.VITE_PROJECTID,
+    storageBucket: import.meta.env.VITE_STORAGEBUCKET,
+    messagingSenderId: import.meta.env.VITE_MESSAGINGSENDERID,
+    appId: import.meta.env.VITE_APPID,
+    measurementId: import.meta.env.VITE_MEASUREMENTID,
 };
 
 // Initialize Firebase

@@ -9,7 +9,7 @@ const MyClasses = () => {
     const [allClasses, setAllClasses] = useState([]);
     const { user } = useContext(AuthContext);
     useEffect(() => {
-        fetch(`http://localhost:5000/allClasses/${user?.email}`)
+        fetch(`https://broadcast-brilliance-institude-server-side.vercel.app/allClasses/${user?.email}`)
             .then(res => res.json())
             .then(data => {
                 setAllClasses(data);
